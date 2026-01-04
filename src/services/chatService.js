@@ -8,7 +8,7 @@
 const API_BASE_URL =
   (typeof window !== 'undefined' && window.env && window.env.REACT_APP_API_URL) ||
   (typeof process !== 'undefined' && process.env.REACT_APP_API_URL) ||
-  'https://asmaakbar88.vercel.app/api';
+  'https://asli-backend-qq62rr172-asma-akbar-raos-projects.vercel.app/';
 
 /**
  * Sends a message to the backend API
