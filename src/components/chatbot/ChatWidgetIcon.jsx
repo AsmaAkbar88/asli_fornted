@@ -4,6 +4,7 @@
  */
 
 import React, { forwardRef, useRef, useEffect } from 'react';
+import ChatBubbleIcon from '@site/static/img/chat-bubble.svg';
 import '../../css/chatbot.css';
 
 /**
@@ -48,25 +49,7 @@ const ChatWidgetIcon = forwardRef(({ isOpen, unreadCount, onClick, onFocus }, re
       type="button"
       tabIndex={0}
     >
-      <svg
-        className="chat-icon"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-        focusable="false"
-      >
-        {/* Cute robot face */}
-        <circle cx="12" cy="8" r="1" fill="currentColor" /> {/* Left eye */}
-        <circle cx="16" cy="8" r="1" fill="currentColor" /> {/* Right eye */}
-        <path d="M10 14s.8 2 4 2 4-2 4-2" stroke="currentColor" fill="none" /> {/* Smile */}
-        <path d="M9 4h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke="currentColor" fill="none" /> {/* Body */}
-        <path d="M7 10v1a3 3 0 0 0 6 0v-1" stroke="currentColor" fill="none" /> {/* Antenna */}
-        <path d="M17 10v1a3 3 0 0 1-6 0v-1" stroke="currentColor" fill="none" /> {/* Antenna */}
-      </svg>
+      <ChatBubbleIcon className="chat-icon" />
 
       {unreadCount > 0 && (
         <span

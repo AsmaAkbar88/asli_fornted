@@ -1,5 +1,5 @@
 /**
- * MessageList - Display all messages in chat
+ * MessageList - Display all messages in chat (ChatGPT-like UI)
  */
 
 import React, { forwardRef } from 'react';
@@ -44,41 +44,27 @@ const MessageList = forwardRef(({ messages }, ref) => {
           key={message.id}
           className={`chat-message ${message.role}`}
           role="article"
-          aria-labelledby={`message-${message.id}-role`}
         >
-          <div className="chat-message-header">
-            <span
-              id={`message-${message.id}-role`}
-              className="chat-message-role"
-            >
-              {formatUserName(message.role)}
-            </span>
-            <time className="chat-timestamp" dateTime={message.timestamp}>
-              {formatDateTime(message.timestamp)}
-            </time>
+          <div className="chat-message-content">
+            {message.highlightedContext && (
+              <blockquote className="chat-highlighted-context">
+                <span className="chat-highlighted-context-label">Context:</span>
+                <p className="chat-highlighted-text">{message.highlightedContext}</p>
+              </blockquote>
+            )}
+
+            <div
+              dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
+              role="presentation"
+            />
           </div>
-
-          {message.highlightedContext && (
-            <blockquote className="chat-highlighted-context">
-              <span className="chat-highlighted-context-label">Context:</span>
-              <p className="chat-highlighted-text">{message.highlightedContext}</p>
-            </blockquote>
-          )}
-
-          <div
-            className="chat-message-content"
-            dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
-            role="presentation"
-          />
 
           {message.generationTime && message.role === 'assistant' && (
             <div
               className="chat-message-timestamp"
-              style={{ fontSize: '0.7rem', color: '#6b7280' }}
               aria-live="polite"
             >
-              Generated in {message.generationTime.toFixed(2)}s with{' '}
-              {Math.round(message.confidenceScore * 100)}% confidence
+              {message.generationTime.toFixed(2)}s
             </div>
           )}
         </div>
